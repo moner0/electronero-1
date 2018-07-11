@@ -948,7 +948,7 @@ difficulty_type Blockchain::get_difficulty_for_next_block()
     m_difficulty_for_next_block = diffV2;
     return diffV2;
   } 
-  else if((uint64_t)versionHeight >= MAINNET_HARDFORK_V10_HEIGHT && (uint64_t)versionHeight <= MAINNET_HARDFORK_V11_HEIGHT){
+  else if((uint64_t)versionHeight >= MAINNET_HARDFORK_V10_HEIGHT && (uint64_t)versionHeight <= MAINNET_HARDFORK_V12_HEIGHT){
     uint8_t version = (uint64_t)height <= MAINNET_HARDFORK_V11_HEIGHT ? 10 : 11;
     difficulty_type diffV3 = next_difficulty_v3(timestamps, difficulties, target); 
     m_difficulty_for_next_block_top_hash = top_hash;
@@ -3567,7 +3567,7 @@ leave:
     }
     else
       proof_of_work = get_block_longhash(bl, m_db->height());
-    const uint64_t bc_height = m_db->height() - 1;
+      const uint64_t bc_height = m_db->height();
     // validate proof_of_work versus difficulty target
     if(!check_hash(proof_of_work, current_diffic))
     {
